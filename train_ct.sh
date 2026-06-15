@@ -24,7 +24,7 @@ swift sft \
     --model_type qwen3_vl \
     --dataset "$DATASET_PATH" \
     --split_dataset_ratio 0.05 \
-    --train_type lora \
+    --sft_type lora \
     --lora_rank 128 \
     --lora_alpha 256 \
     --torch_dtype bfloat16 \
