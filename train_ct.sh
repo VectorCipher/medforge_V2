@@ -30,7 +30,6 @@ swift sft \
     --num_train_epochs 10 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
-    --attn_impl flash_attn \
     --learning_rate 1e-4 \
     --target_modules all-linear \
     --freeze_vit false \
