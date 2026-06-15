@@ -21,6 +21,7 @@ export NPROC_PER_NODE=1        # Change this to match the number of GPUs
 # Note: LoRA alpha/rank and learning rates are optimized based on MedForge's original training
 swift sft \
     --model "$MODEL_CHECKPOINT" \
+    --model_type qwen3_vl_8b_instruct \
     --dataset "$DATASET_PATH" \
     --split_dataset_ratio 0.05 \
     --train_type lora \
