@@ -1,0 +1,9 @@
+# MedForge V2 Requirements
+ms-swift[all]
+vllm
+torch>=2.1.0
+torchvision
+transformers
+accelerate
+deepspeed
+peft
