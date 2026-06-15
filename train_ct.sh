@@ -34,7 +34,7 @@ swift sft \
     --target_modules all-linear \
     --freeze_vit false \
     --freeze_aligner false \
-    --padding_free true \
+    --padding_free false \
     --gradient_checkpointing true \
     --vit_gradient_checkpointing true \
     --gradient_accumulation_steps 4 \
