@@ -3,7 +3,7 @@
 # Configuration
 # Path to the Kaggle MedForge-Reasoner checkpoint directory
 MODEL_CHECKPOINT="/kaggle/working/MedForge-Reasoner"
-DATASET_PATH="/kaggle/input/datasets/naitikpal/medforge-json/sft_train_ct.json" # Assuming output of prepare_dataset.py goes here or you run it in working dir
+DATASET_PATH="/kaggle/working/sft_train_ct.json" # Assuming output of prepare_dataset.py goes here or you run it in working dir
 OUTPUT_DIR="/kaggle/working/output/medforge-ct-finetune"
 
 # Ensure output directory exists
