@@ -11,10 +11,21 @@ def reformat_annotation(item):
     # 1. Image Path
     # Make sure this points to wherever your images are actually stored on Kaggle.
     raw_image_path = item.get("image", "")
+    modality = item.get("modality", "")
+    
+    # Skip MRI images entirely since we are only training on CT
+    if modality.upper() == "MRI" or "MRI" in raw_image_path:
+        return None
     
     # Remove 'images/' prefix if it exists in the JSON path to match your Kaggle structure
     if raw_image_path.startswith("images/"):
         raw_image_path = raw_image_path[len("images/"):]
+        
+    # Remove 'CT/' and 'MRI/' prefixes since Kaggle has them directly under injection/ and removal/
+    if raw_image_path.startswith("CT/"):
+        raw_image_path = raw_image_path[len("CT/"):]
+    elif raw_image_path.startswith("MRI/"):
+        raw_image_path = raw_image_path[len("MRI/"):]
         
     # Append the Kaggle dataset base path
     kaggle_base_path = "/kaggle/input/datasets/naitikpal/ct-v2-medforge"
@@ -105,7 +116,8 @@ def main():
     for idx, item in enumerate(data):
         try:
             swift_item = reformat_annotation(item)
-            formatted_dataset.append(swift_item)
+            if swift_item is not None:
+                formatted_dataset.append(swift_item)
         except Exception as e:
             print(f"Error processing item {idx}: {e}")
             
