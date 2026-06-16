@@ -33,6 +33,7 @@ swift sft \
     --freeze_vit false \
     --freeze_aligner false \
     --padding_free false \
+    --disable_tqdm false \
     --gradient_checkpointing true \
     --vit_gradient_checkpointing true \
     --gradient_accumulation_steps 16 \
