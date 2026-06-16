@@ -11,11 +11,8 @@ mkdir -p "$OUTPUT_DIR"
 
 echo "Starting Fine-Tuning on CT Lungs dataset..."
 
-# Environment variables for distributed training
-export MASTER_PORT=29502
 export PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True'
 export CUDA_VISIBLE_DEVICES=0,1  # Use both T4 GPUs on Kaggle
-export NPROC_PER_NODE=1        # Use 1 process to trigger Pipeline Parallelism across both GPUs
 
 # Run swift SFT
 # Note: LoRA alpha/rank and learning rates are optimized based on MedForge's original training
