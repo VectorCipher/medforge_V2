@@ -15,7 +15,7 @@ echo "Starting Fine-Tuning on CT Lungs dataset..."
 export MASTER_PORT=29502
 export PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True'
 export CUDA_VISIBLE_DEVICES=0,1  # Use both T4 GPUs on Kaggle
-export NPROC_PER_NODE=2        # Use 2 processes for the 2 GPUs
+export NPROC_PER_NODE=1        # Use 1 process to trigger Pipeline Parallelism across both GPUs
 
 # Run swift SFT
 # Note: LoRA alpha/rank and learning rates are optimized based on MedForge's original training
@@ -38,7 +38,7 @@ swift sft \
     --padding_free false \
     --gradient_checkpointing true \
     --vit_gradient_checkpointing true \
-    --gradient_accumulation_steps 8 \
+    --gradient_accumulation_steps 16 \
     --eval_steps 200 \
     --save_steps 200 \
     --save_total_limit 3 \
