@@ -46,7 +46,6 @@ swift sft \
     --max_length 2048 \
     --output_dir "$OUTPUT_DIR" \
     --warmup_ratio 0.05 \
-    --deepspeed zero2 \
     --dataset_num_proc 4 \
     --dataloader_num_workers 4 \
     --report_to tensorboard
