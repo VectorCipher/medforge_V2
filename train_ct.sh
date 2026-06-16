@@ -14,8 +14,8 @@ echo "Starting Fine-Tuning on CT Lungs dataset..."
 # Environment variables for distributed training
 export MASTER_PORT=29502
 export PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True'
-export CUDA_VISIBLE_DEVICES=0  # Change to 0,1,2,3 if you have multiple GPUs
-export NPROC_PER_NODE=1        # Change this to match the number of GPUs
+export CUDA_VISIBLE_DEVICES=0,1  # Use both T4 GPUs on Kaggle
+export NPROC_PER_NODE=2        # Use 2 processes for the 2 GPUs
 
 # Run swift SFT
 # Note: LoRA alpha/rank and learning rates are optimized based on MedForge's original training
@@ -28,8 +28,8 @@ swift sft \
     --lora_alpha 64 \
     --torch_dtype bfloat16 \
     --num_train_epochs 10 \
-    --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
     --learning_rate 1e-4 \
     --target_modules all-linear \
     --freeze_vit false \
@@ -37,7 +37,7 @@ swift sft \
     --padding_free false \
     --gradient_checkpointing true \
     --vit_gradient_checkpointing true \
-    --gradient_accumulation_steps 4 \
+    --gradient_accumulation_steps 8 \
     --eval_steps 200 \
     --save_steps 200 \
     --save_total_limit 3 \
