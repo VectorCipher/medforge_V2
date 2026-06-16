@@ -27,6 +27,7 @@ swift sft \
     --lora_rank 32 \
     --lora_alpha 64 \
     --torch_dtype bfloat16 \
+    --quant_bits 4 \
     --num_train_epochs 10 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
